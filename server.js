@@ -8,6 +8,8 @@ const express = require('express');
 const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 const app = express();
 
@@ -35,58 +37,80 @@ const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const BREVO_SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || process.env.COMPANY_EMAIL;
 const BREVO_SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Stackers Mania';
 
+const GMAIL_USER = process.env.GMAIL_USER;
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
+const useBrevo = Boolean(BREVO_API_KEY);
+
+let transporter = null;
+let brevoClient = null;
 if (!BREVO_API_KEY) {
-  console.warn('[mail] BREVO_API_KEY is not configured. Email sending will fail until this is set.');
+  console.warn('[mail] BREVO_API_KEY is not configured. Falling back to Gmail SMTP if available.');
+  if (GMAIL_USER && GMAIL_APP_PASSWORD) {
+    transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
+    });
+    transporter.verify((err) => {
+      if (err) {
+        console.warn('[mail] Gmail transporter verification failed:', err.message);
+      } else {
+        console.log('[mail] Gmail SMTP transporter ready.');
+      }
+    });
+  } else {
+    console.warn('[mail] No email transporter configured. Set BREVO_API_KEY or GMAIL_USER and GMAIL_APP_PASSWORD.');
+  }
 } else {
+  const defaultClient = SibApiV3Sdk.ApiClient.instance;
+  const apiKey = defaultClient.authentications['api-key'];
+  apiKey.apiKey = BREVO_API_KEY;
+  brevoClient = new SibApiV3Sdk.TransactionalEmailsApi();
   console.log('[mail] Brevo email API configured.');
 }
 
-function buildBrevoPayload({ to, subject, text, replyTo, attachments }) {
-  const payload = {
-    sender: {
-      name: BREVO_SENDER_NAME,
-      email: BREVO_SENDER_EMAIL,
-    },
-    to: [{ email: to }],
-    subject,
-    textContent: text,
-  };
+async function sendEmail({ to, subject, text, replyTo, attachments }) {
+  if (useBrevo) {
+    if (!brevoClient) {
+      throw new Error('Brevo client is not initialized.');
+    }
 
-  if (replyTo) {
-    payload.replyTo = { email: replyTo };
+    const email = {
+      sender: { name: BREVO_SENDER_NAME, email: BREVO_SENDER_EMAIL },
+      to: [{ email: to }],
+      subject,
+      textContent: text,
+      replyTo: replyTo ? { email: replyTo } : undefined,
+      attachment: attachments?.map(({ filename, content, contentType }) => ({
+        content: content.toString('base64'),
+        name: filename,
+        contentType,
+      })),
+    };
+
+    return brevoClient.sendTransacEmail(email);
   }
 
+  if (!transporter) {
+    throw new Error('Email service is not configured. Set BREVO_API_KEY in .env or provide GMAIL_USER and GMAIL_APP_PASSWORD.');
+  }
+
+  const mailOptions = {
+    from: `"${BREVO_SENDER_NAME}" <${BREVO_SENDER_EMAIL}>`,
+    to,
+    replyTo,
+    subject,
+    text,
+  };
+
   if (attachments && attachments.length) {
-    payload.attachment = attachments.map(({ filename, content, contentType }) => ({
-      name: filename,
-      content: content.toString('base64'),
+    mailOptions.attachments = attachments.map(({ filename, content, contentType }) => ({
+      filename,
+      content,
       contentType,
     }));
   }
 
-  return payload;
-}
-
-async function sendEmail({ to, subject, text, replyTo, attachments }) {
-  if (!BREVO_API_KEY) {
-    throw new Error('Email service is not configured. Set BREVO_API_KEY in .env.');
-  }
-
-  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': BREVO_API_KEY,
-    },
-    body: JSON.stringify(buildBrevoPayload({ to, subject, text, replyTo, attachments })),
-  });
-
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.message || JSON.stringify(data));
-  }
-
-  return data;
+  return transporter.sendMail(mailOptions);
 }
 
 // ---------- middleware ----------
