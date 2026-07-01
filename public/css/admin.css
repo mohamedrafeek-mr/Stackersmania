@@ -1,0 +1,73 @@
+.admin-body{ background: var(--ink); }
+
+/* ---------- login ---------- */
+.admin-login{
+  min-height: 100vh; display:flex; align-items:center; justify-content:center; padding: 24px;
+}
+.admin-login-card{
+  width: 100%; max-width: 380px;
+  background: var(--ink-raised); border:1px solid var(--line); border-radius: var(--radius);
+  padding: 40px 36px;
+}
+.admin-logo{ margin-bottom: 28px; }
+.admin-login-card h1{ font-family: var(--font-display); margin: 0 0 24px; font-size: 1.6rem; }
+
+/* ---------- shell ---------- */
+.admin-header{
+  display:flex; align-items:center; justify-content:space-between; gap: 24px;
+  padding: 20px 32px; border-bottom: 1px solid var(--line);
+}
+.admin-tabs{ display:flex; gap: 8px; background: var(--ink-raised); border-radius: 999px; padding: 4px; }
+.admin-tab{
+  background:none; border:none; color: var(--text-muted); padding: 8px 20px; border-radius: 999px;
+  font-size: 0.9rem; transition: var(--transition);
+}
+.admin-tab.active{ background: var(--amber); color: var(--ink); font-weight: 600; }
+
+.admin-main{ max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+.admin-panel-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 28px; }
+.admin-panel-head h2{ font-family: var(--font-display); margin:0; font-size: 1.4rem; }
+
+/* ---------- careers admin list ---------- */
+.admin-careers-list{ display:flex; flex-direction:column; gap: 14px; }
+.admin-career-row{
+  background: var(--ink-raised); border:1px solid var(--line); border-radius: var(--radius);
+  padding: 18px 22px; display:flex; align-items:center; justify-content:space-between; gap: 16px;
+}
+.admin-career-row.is-inactive{ opacity: 0.55; }
+.admin-career-row h3{ font-family: var(--font-display); margin: 0 0 6px; font-size: 1.02rem; }
+.admin-career-row .meta{ color: var(--text-muted); font-size: 0.82rem; }
+.status-pill{
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 10px; border-radius: 999px;
+  border: 1px solid var(--line); margin-left: 10px;
+}
+.status-pill.active{ color: #8FD19E; border-color: #8FD19E; }
+.status-pill.inactive{ color: var(--text-muted); }
+
+/* ---------- applications admin list ---------- */
+.admin-applications-list{ display:flex; flex-direction:column; gap: 14px; }
+.application-row{
+  background: var(--ink-raised); border:1px solid var(--line); border-radius: var(--radius);
+  padding: 18px 22px;
+}
+.application-row h3{ font-family: var(--font-display); margin: 0 0 4px; font-size: 1rem; }
+.application-row .meta{ color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px; }
+.application-row .msg{ font-size: 0.9rem; color: var(--text); margin-bottom: 10px; white-space: pre-wrap; }
+.application-actions{ display:flex; gap: 10px; }
+.application-actions .btn{ padding: 8px 16px; font-size: 0.85rem; }
+
+.empty-state{ color: var(--text-muted); padding: 24px; text-align:center; }
+
+.form-row-inline label{ display:flex; align-items:center; gap: 8px; color: var(--text); font-size: 0.9rem; }
+.form-row-inline input[type="checkbox"]{ width: 16px; height: 16px; }
+.modal-actions{ display:flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
+
+select#careerType{
+  background: var(--ink); border:1px solid var(--line); border-radius: 8px;
+  padding: 12px 14px; color: var(--text); font-size: 0.95rem;
+}
+
+@media (max-width: 640px){
+  .admin-header{ flex-direction:column; gap: 16px; align-items:flex-start; }
+  .admin-career-row{ flex-direction:column; align-items:flex-start; }
+}

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stackers Mania — Software &amp; Web Development Studio, Erode</title>
+<meta name="description" content="Stackers Mania is a full-stack software development studio in Erode, Tamil Nadu, building web, mobile and cloud products end to end." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="noise-layer" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav container">
+    <a href="#home" class="logo">
+      <img src="assets/logo.png" alt="Stackers Mania logo" class="logo-mark-img" />
+      <span class="logo-text">Stackers<em>Mania</em></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active" data-nav>Home</a></li>
+      <li><a href="#services" class="nav-link" data-nav>Services</a></li>
+      <li><a href="#work" class="nav-link" data-nav>Work</a></li>
+      <li><a href="#about" class="nav-link" data-nav>About</a></li>
+      <li><a href="#careers" class="nav-link" data-nav>Careers</a></li>
+      <li><a href="#contact" class="nav-link nav-cta" data-nav>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow mono">Software &amp; Web Development Studio — Erode, Tamil Nadu</p>
+        <h1 class="hero-title">
+          We build the<br />
+          <span class="text-gradient">stack</span> behind<br />
+          your next idea.
+        </h1>
+        <p class="hero-sub">
+          Stackers Mania designs and ships web platforms, mobile apps and cloud
+          systems layer by layer — from the interface people touch to the
+          infrastructure that keeps it running.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Start a project</a>
+          <a href="#work" class="btn btn-ghost">See our work</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="stack-tower">
+          <div class="stack-layer" style="--i:3;">
+            <span class="stack-tag mono">04 · CLOUD</span>
+            <span class="stack-name">Infra &amp; DevOps</span>
+          </div>
+          <div class="stack-layer" style="--i:2;">
+            <span class="stack-tag mono">03 · DATA</span>
+            <span class="stack-name">Database</span>
+          </div>
+          <div class="stack-layer" style="--i:1;">
+            <span class="stack-tag mono">02 · API</span>
+            <span class="stack-name">Backend</span>
+          </div>
+          <div class="stack-layer" style="--i:0;">
+            <span class="stack-tag mono">01 · UI</span>
+            <span class="stack-name">Frontend</span>
+          </div>
+          <div class="stack-shadow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STATS ===== -->
+    <div class="stats-bar container reveal">
+      <div class="stat">
+        <span class="stat-num" data-count="1">0</span>
+        <span class="stat-label">Projects Delivered</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="1">0</span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="1">0</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="100" data-suffix="%">0%</span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section" id="services">
+    <div class="container">
+      <p class="eyebrow mono">What we do</p>
+      <h2 class="section-title">Every layer, covered.</h2>
+
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <span class="service-index mono">01</span>
+          <h3>Web Development</h3>
+          <p>Fast, responsive websites and web apps built with modern frameworks — from marketing sites to full products.</p>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-index mono">02</span>
+          <h3>Mobile App Development</h3>
+          <p>Native-feeling Android and iOS apps, built to work well on real devices and real networks.</p>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-index mono">03</span>
+          <h3>UI / UX Design</h3>
+          <p>Interfaces designed around how people actually use your product, not just how it looks in a mockup.</p>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-index mono">04</span>
+          <h3>Backend &amp; APIs</h3>
+          <p>Reliable servers, databases and APIs engineered to hold up as your product and traffic grow.</p>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-index mono">05</span>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>Deployment pipelines, hosting and monitoring set up so releases are routine, not risky.</p>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-index mono">06</span>
+          <h3>IT Consulting</h3>
+          <p>Practical advice on architecture, tooling and technical strategy for teams building their first (or next) product.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="section section-alt" id="work">
+    <div class="container">
+      <p class="eyebrow mono">Selected work</p>
+      <h2 class="section-title">Built, shipped, running.</h2>
+      <p class="section-lead">A look at the kind of work we do. Case studies are added here as projects go live.</p>
+
+      <div class="work-grid">
+        <article class="work-card reveal">
+          <div class="work-thumb" data-tag="Retail · Web Platform">
+            <span class="work-thumb-glyph mono">01</span>
+          </div>
+          <h3>Inventory &amp; Billing Platform</h3>
+          <p>A web dashboard for a retail business to track stock, billing and staff activity in one place.</p>
+          <ul class="tag-list">
+            <li>React</li><li>Node.js</li><li>PostgreSQL</li>
+          </ul>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="work-thumb" data-tag="Services · Booking App">
+            <span class="work-thumb-glyph mono">02</span>
+          </div>
+          <h3>Appointment Booking App</h3>
+          <p>A mobile-first booking system that lets customers schedule visits and get reminders automatically.</p>
+          <ul class="tag-list">
+            <li>React Native</li><li>Express</li><li>MongoDB</li>
+          </ul>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="work-thumb" data-tag="Corporate · Website">
+            <span class="work-thumb-glyph mono">03</span>
+          </div>
+          <h3>Company Website &amp; CMS</h3>
+          <p>A fast marketing website with a simple content panel so the client's team can update it without a developer.</p>
+          <ul class="tag-list">
+            <li>Next.js</li><li>Node.js</li><li>Cloud Hosting</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="reveal">
+        <p class="eyebrow mono">About us</p>
+        <h2 class="section-title">A small studio, obsessed with the stack.</h2>
+        <p class="about-text">
+          Stackers Mania started in Erode with a simple idea: treat every layer
+          of a product — interface, server, database, infrastructure — with the
+          same care. We're a small team, which means the people who design your
+          product are the same people who build and ship it.
+        </p>
+        <p class="about-text">
+          We work closely with each client, from the first sketch to the day
+          it goes live and beyond. No handoffs, no guesswork — just a team
+          that's genuinely into getting the stack right.
+        </p>
+      </div>
+      <div class="about-values reveal">
+        <div class="value-card">
+          <h4>Direct communication</h4>
+          <p>You talk to the people building your product, not a middleman.</p>
+        </div>
+        <div class="value-card">
+          <h4>Built to last</h4>
+          <p>We choose boring, reliable technology where it counts, and modern tools where they help.</p>
+        </div>
+        <div class="value-card">
+          <h4>Based in Erode</h4>
+          <p>Proudly building from Tamil Nadu, working with clients everywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="section" id="team">
+    <div class="container">
+      <p class="eyebrow mono">Our team</p>
+      <h2 class="section-title">The people behind the stack.</h2>
+
+      <div class="team-grid">
+        <article class="team-card reveal">
+          <span class="team-avatar">MR</span>
+          <h3>Mohamed Rafeek M.</h3>
+          <p class="team-role">Founder &amp; Lead Dev</p>
+        </article>
+        <article class="team-card reveal">
+          <span class="team-avatar">SB</span>
+          <h3>Saran B.</h3>
+          <p class="team-role">Senior Business Development</p>
+        </article>
+        <article class="team-card reveal">
+          <span class="team-avatar">MC</span>
+          <h3>Mathaven C.</h3>
+          <p class="team-role">Senior Business Development</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAREERS ============ -->
+  <section class="section section-alt" id="careers">
+    <div class="container">
+      <p class="eyebrow mono">Join us</p>
+      <h2 class="section-title">Come build the stack with us.</h2>
+      <p class="section-lead">Open roles at Stackers Mania. Apply below and we'll get back to you by email.</p>
+
+      <div id="careersList" class="careers-list">
+        <p class="careers-loading mono">Loading open roles…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+      <div class="reveal">
+        <p class="eyebrow mono">Get in touch</p>
+        <h2 class="section-title">Let's talk about your project.</h2>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-label mono">Location</span>
+            <span class="contact-value">Erode, Tamil Nadu, India</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label mono">Email</span>
+            <a class="contact-value" href="mailto:stackersmania@gmail.com">stackersmania@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <form id="contactForm" class="contact-form reveal" novalidate>
+        <div class="form-row">
+          <label for="contactName">Name</label>
+          <input type="text" id="contactName" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="form-row">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-row">
+          <label for="contactPhone">Phone</label>
+          <input type="tel" id="contactPhone" name="phone" placeholder="e.g. +91 98765 43210" required />
+        </div>
+        <div class="form-row">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" name="message" rows="4" placeholder="Tell us about your project, timeline, and budget" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-status" id="contactStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="logo footer-logo">
+        <img src="assets/logo.png" alt="Stackers Mania logo" class="logo-mark-img" />
+        <span class="logo-text">Stackers<em>Mania</em></span>
+      </div>
+      <p class="footer-copy">Creating modern, responsive, and professional digital experiences.</p>
+    </div>
+
+    <div class="footer-section">
+      <p class="footer-heading">Quick Links</p>
+      <ul class="footer-list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Portfolio</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <p class="footer-heading">Services</p>
+      <ul class="footer-list">
+        <li><a href="#services">Web Design</a></li>
+        <li><a href="#services">Web Development</a></li>
+        <li><a href="#services">E-Commerce</a></li>
+        <li><a href="#services">SEO Optimization</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section footer-connect-section">
+      <p class="footer-heading">Connect</p>
+      <p class="footer-connect">Email: <a href="mailto:stackersmania@gmail.com">stackersmania@gmail.com</a></p>
+      <p class="footer-note">© <span id="year"></span> 2026 Stackers Mania. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ APPLY MODAL ============ -->
+<div class="modal" id="applyModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="applyModalTitle">
+    <button class="modal-close" data-close aria-label="Close">&times;</button>
+    <p class="eyebrow mono">Apply for</p>
+    <h3 id="applyModalTitle">Role title</h3>
+
+    <form id="applyForm" novalidate>
+      <input type="hidden" name="roleTitle" id="applyRoleTitle" />
+      <div class="form-row">
+        <label for="applyName">Full name</label>
+        <input type="text" id="applyName" name="name" placeholder="Your full name" required />
+      </div>
+      <div class="form-row">
+        <label for="applyEmail">Email</label>
+        <input type="email" id="applyEmail" name="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-row">
+        <label for="applyPhone">Phone</label>
+        <input type="tel" id="applyPhone" name="phone" placeholder="e.g. +91 98765 43210" required />
+      </div>
+      <div class="form-row">
+        <label for="applyResume">Resume (PDF or Word, max 5MB)</label>
+        <input type="file" id="applyResume" name="resume" accept=".pdf,.doc,.docx" required />
+      </div>
+      <div class="form-row">
+        <label for="applyMessage">Message (optional)</label>
+        <textarea id="applyMessage" name="message" rows="3" placeholder="Tell us why you’re a great fit"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Submit application</button>
+      <p class="form-status" id="applyStatus" role="status"></p>
+    </form>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

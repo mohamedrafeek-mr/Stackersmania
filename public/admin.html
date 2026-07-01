@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Stackers Mania</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-body">
+
+<!-- ============ LOGIN VIEW ============ -->
+<section class="admin-login" id="loginView">
+  <form class="admin-login-card" id="loginForm" novalidate>
+    <div class="logo admin-logo">
+      <img src="assets/logo.png" alt="Stackers Mania logo" class="logo-mark-img" />
+      <span class="logo-text">Stackers<em>Mania</em></span>
+    </div>
+    <p class="eyebrow mono">Admin panel</p>
+    <h1>Sign in</h1>
+    <div class="form-row">
+      <label for="loginUser">Username</label>
+      <input type="text" id="loginUser" name="username" autocomplete="username" required />
+    </div>
+    <div class="form-row">
+      <label for="loginPass">Password</label>
+      <input type="password" id="loginPass" name="password" autocomplete="current-password" required />
+    </div>
+    <button type="submit" class="btn btn-primary btn-full">Sign in</button>
+    <p class="form-status" id="loginStatus"></p>
+  </form>
+</section>
+
+<!-- ============ DASHBOARD VIEW ============ -->
+<div class="admin-shell" id="dashboardView" hidden>
+  <header class="admin-header">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Stackers Mania logo" class="logo-mark-img" />
+      <span class="logo-text">Stackers<em>Mania</em></span>
+    </div>
+    <nav class="admin-tabs">
+      <button class="admin-tab active" data-tab="careers">Careers</button>
+      <button class="admin-tab" data-tab="applications">Applications</button>
+    </nav>
+    <button class="btn btn-ghost" id="logoutBtn">Log out</button>
+  </header>
+
+  <main class="admin-main">
+
+    <!-- CAREERS TAB -->
+    <section class="admin-panel" id="tab-careers">
+      <div class="admin-panel-head">
+        <h2>Career listings</h2>
+        <button class="btn btn-primary" id="newCareerBtn">+ New role</button>
+      </div>
+      <div id="adminCareersList" class="admin-careers-list"></div>
+    </section>
+
+    <!-- APPLICATIONS TAB -->
+    <section class="admin-panel" id="tab-applications" hidden>
+      <div class="admin-panel-head">
+        <h2>Applications received</h2>
+      </div>
+      <div id="adminApplicationsList" class="admin-applications-list"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============ CAREER EDIT MODAL ============ -->
+<div class="modal" id="careerModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true">
+    <button class="modal-close" data-close aria-label="Close">&times;</button>
+    <h3 id="careerModalTitle">New role</h3>
+    <form id="careerForm" novalidate>
+      <input type="hidden" id="careerId" />
+      <div class="form-row">
+        <label for="careerTitle">Job title</label>
+        <input type="text" id="careerTitle" required />
+      </div>
+      <div class="form-row">
+        <label for="careerDept">Department</label>
+        <input type="text" id="careerDept" placeholder="Engineering" />
+      </div>
+      <div class="form-row">
+        <label for="careerLocation">Location</label>
+        <input type="text" id="careerLocation" placeholder="Erode, Tamil Nadu (On-site)" />
+      </div>
+      <div class="form-row">
+        <label for="careerType">Employment type</label>
+        <select id="careerType">
+          <option>Full-time</option>
+          <option>Part-time</option>
+          <option>Internship</option>
+          <option>Contract</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="careerDesc">Description</label>
+        <textarea id="careerDesc" rows="3" required></textarea>
+      </div>
+      <div class="form-row">
+        <label for="careerReqs">Requirements (one per line)</label>
+        <textarea id="careerReqs" rows="4"></textarea>
+      </div>
+      <div class="form-row form-row-inline">
+        <label for="careerActive">
+          <input type="checkbox" id="careerActive" checked />
+          Visible on careers page
+        </label>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="deleteCareerBtn" hidden>Delete</button>
+        <button type="submit" class="btn btn-primary">Save role</button>
+      </div>
+      <p class="form-status" id="careerFormStatus"></p>
+    </form>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

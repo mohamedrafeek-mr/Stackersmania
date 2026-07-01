@@ -1,0 +1,49 @@
+[
+  {
+    "id": "fe-dev-01",
+    "title": "Frontend Developer",
+    "department": "Engineering",
+    "location": "Erode, Tamil Nadu (On-site)",
+    "type": "Full-time",
+    "description": "Build clean, fast, well-crafted interfaces for our client projects using React and modern CSS. You'll work closely with design and backend to ship complete features, not just components.",
+    "requirements": [
+      "Solid HTML, CSS and JavaScript fundamentals",
+      "Experience with React or a similar framework",
+      "An eye for detail and clean UI",
+      "Comfortable working directly with clients"
+    ],
+    "active": true,
+    "postedAt": "2026-06-01"
+  },
+  {
+    "id": "be-dev-01",
+    "title": "Backend Developer",
+    "department": "Engineering",
+    "location": "Erode, Tamil Nadu (On-site)",
+    "type": "Full-time",
+    "description": "Design and build the APIs, databases and infrastructure behind our client products. Node.js and cloud experience preferred.",
+    "requirements": [
+      "Experience with Node.js, Express or similar",
+      "Working knowledge of SQL/NoSQL databases",
+      "Understanding of REST API design",
+      "Bonus: exposure to AWS, GCP or Azure"
+    ],
+    "active": true,
+    "postedAt": "2026-06-01"
+  },
+  {
+    "id": "intern-01",
+    "title": "Software Development Intern",
+    "department": "Engineering",
+    "location": "Erode, Tamil Nadu (On-site)",
+    "type": "Internship",
+    "description": "A hands-on internship for students or recent graduates who want real project experience across the stack.",
+    "requirements": [
+      "Basic programming knowledge in any language",
+      "Willingness to learn quickly",
+      "Available for full-time internship hours"
+    ],
+    "active": true,
+    "postedAt": "2026-06-15"
+  }
+]
