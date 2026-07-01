@@ -8,7 +8,6 @@ const express = require('express');
 const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcryptjs');
-const nodemailer = require('nodemailer');
 
 const app = express();
 
@@ -32,22 +31,63 @@ function writeJSON(file, data) {
 }
 
 // ---------- mail transporter ----------
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
+const BREVO_API_KEY = process.env.BREVO_API_KEY;
+const BREVO_SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || process.env.COMPANY_EMAIL;
+const BREVO_SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Stackers Mania';
 
-transporter.verify((err) => {
-  if (err) {
-    console.warn('[mail] Could not verify Gmail transporter — check GMAIL_USER / GMAIL_APP_PASSWORD in .env');
-    console.warn('[mail] ' + err.message);
-  } else {
-    console.log('[mail] Gmail transporter ready.');
+if (!BREVO_API_KEY) {
+  console.warn('[mail] BREVO_API_KEY is not configured. Email sending will fail until this is set.');
+} else {
+  console.log('[mail] Brevo email API configured.');
+}
+
+function buildBrevoPayload({ to, subject, text, replyTo, attachments }) {
+  const payload = {
+    sender: {
+      name: BREVO_SENDER_NAME,
+      email: BREVO_SENDER_EMAIL,
+    },
+    to: [{ email: to }],
+    subject,
+    textContent: text,
+  };
+
+  if (replyTo) {
+    payload.replyTo = { email: replyTo };
   }
-});
+
+  if (attachments && attachments.length) {
+    payload.attachment = attachments.map(({ filename, content, contentType }) => ({
+      name: filename,
+      content: content.toString('base64'),
+      contentType,
+    }));
+  }
+
+  return payload;
+}
+
+async function sendEmail({ to, subject, text, replyTo, attachments }) {
+  if (!BREVO_API_KEY) {
+    throw new Error('Email service is not configured. Set BREVO_API_KEY in .env.');
+  }
+
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': BREVO_API_KEY,
+    },
+    body: JSON.stringify(buildBrevoPayload({ to, subject, text, replyTo, attachments })),
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message || JSON.stringify(data));
+  }
+
+  return data;
+}
 
 // ---------- middleware ----------
 app.use(express.json());
@@ -128,8 +168,7 @@ app.post('/api/apply', upload.single('resume'), async (req, res) => {
     writeJSON(APPLICATIONS_FILE, applications);
 
     // 1. Notify the company, with the resume attached
-    await transporter.sendMail({
-      from: `"Stackers Mania Careers" <${process.env.GMAIL_USER}>`,
+    await sendEmail({
       to: process.env.COMPANY_EMAIL,
       replyTo: email,
       subject: `New application: ${roleTitle} — ${name}`,
@@ -148,6 +187,7 @@ app.post('/api/apply', upload.single('resume'), async (req, res) => {
         {
           filename: req.file.originalname,
           content: req.file.buffer,
+          contentType: req.file.mimetype,
         },
       ],
     });
@@ -157,8 +197,7 @@ app.post('/api/apply', upload.single('resume'), async (req, res) => {
     // has already been saved and emailed to the company above, so we
     // don't fail the whole request over a confirmation email.
     try {
-      await transporter.sendMail({
-        from: `"Stackers Mania Careers" <${process.env.GMAIL_USER}>`,
+      await sendEmail({
         to: email,
         replyTo: process.env.COMPANY_EMAIL,
         subject: `We've received your application — ${roleTitle}`,
@@ -200,8 +239,7 @@ app.post('/api/contact', async (req, res) => {
       return res.status(400).json({ ok: false, error: 'Please fill in all required fields.' });
     }
 
-    await transporter.sendMail({
-      from: `"Stackers Mania Website" <${process.env.GMAIL_USER}>`,
+    await sendEmail({
       to: process.env.COMPANY_EMAIL,
       replyTo: email,
       subject: `New contact form message from ${name}`,
