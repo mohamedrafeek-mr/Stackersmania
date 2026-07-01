@@ -33,7 +33,7 @@ function writeJSON(file, data) {
 }
 
 // ---------- mail transporter ----------
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
+const BREVO_API_KEY = process.env.BREVO_API_KEY?.trim();
 const BREVO_SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || process.env.COMPANY_EMAIL;
 const BREVO_SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Stackers Mania';
 
