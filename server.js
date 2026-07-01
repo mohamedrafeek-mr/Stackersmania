@@ -87,7 +87,16 @@ async function sendEmail({ to, subject, text, replyTo, attachments }) {
       })),
     };
 
-    return brevoClient.sendTransacEmail(email);
+    try {
+      return await brevoClient.sendTransacEmail(email);
+    } catch (err) {
+      console.error('[mail] Brevo sendTransacEmail failed:', err);
+      throw new Error(
+        err.response && err.response.body
+          ? `Brevo error: ${JSON.stringify(err.response.body)}`
+          : err.message || 'Brevo send failed.'
+      );
+    }
   }
 
   if (!transporter) {
